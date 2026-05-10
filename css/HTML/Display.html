@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>display</title>
+    <style>
+        .main {
+            background: red;
+            display: flex;
+            /* x axis */
+            justify-content: center;
+            /* y axis */
+            align-items: center;
+            gap: 1.5rem;
+            height: 50vh;
+            width: 70%;
+            margin: auto;
+
+        }
+
+        .main1,
+        .main2 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            background: purple;
+            justify-items: center;
+            align-items: center;
+            height: 70vh;
+            width: 70%;
+            margin: 20px auto;
+        }
+
+        .main2 {
+            grid-template-areas: "img_6 img_2 img_5"
+                "img_4 img_3 img_1"
+            ;
+        }
+
+        .child {
+            width: 200px;
+            height: 200px;
+            /* margin: 5px; */
+            background: teal;
+        }
+
+        img {
+            width: 200px;
+        }
+
+        .img_div {
+            border: 2px solid red;
+        }
+
+        .img_1 {
+            grid-area: img_1;
+
+
+        }
+
+        .img_2 {
+            grid-area: img_2;
+
+        }
+
+        .img_3 {
+            grid-area: img_3;
+
+        }
+
+        .img_4 {
+            grid-area: img_4;
+
+        }
+
+        .img_5 {
+            grid-area: img_5;
+
+        }
+
+        .img_6 {
+            grid-area: img_6;
+
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main">
+        <div class="child"></div>
+        <div class="child"></div>
+        <div class="child"></div>
+        <div class="child"></div>
+        <div class="child"></div>
+    </div>
+    <div class="main1">
+        <div class="child"></div>
+        <div class="child"></div>
+        <div class="child"></div>
+        <div class="child"></div>
+        <div class="child"></div>
+    </div>
+    <div class="main2">
+        <div class="img_div">
+            <img class="img_1" src="../../utils/raspberry-7313702_1920.jpg" alt="img">
+        </div>
+
+        <div class="img_div">
+            <img class="img_2" src="../../utils/neu_pass.png" alt="img">
+        </div>
+
+        <div class="img_div">
+            <img class="img_3" src="../../utils/field-6491448_1920.jpg" alt="img">
+        </div>
+
+        <div class="img_div">
+            <img class="img_4" src="../../utils/car-1068794_1280.webp" alt="img">
+        </div>
+
+        <div class="img_div">
+            <img class="img_5" src="../../utils/cherries-8673179_1920.jpg" alt="img">
+        </div>
+
+        <div class="img_div">
+            <img class="img_6" src="../../utils/10429799.jpg" alt="img">
+        </div>
+
+    </div>
+</body>
+
+</html>

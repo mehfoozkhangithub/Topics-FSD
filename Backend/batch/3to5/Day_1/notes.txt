@@ -1,0 +1,14 @@
+- to create folder 
+        - mkdir <dir_name>
+
+- to create file 
+        - touch <file_name>
+
+- change dir 
+        - cd <dir_name || file_name>
+
+- read file 
+        - node <file_name>
+
+- delete file || dir
+        - rm -rf <file || dir>

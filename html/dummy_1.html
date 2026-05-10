@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Betania+Patmos+In&family=Bitcount+Ink:wght@100..900&family=Bitcount+Prop+Single:wght@100..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Momo+Signature&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Noto+Sans+JP:wght@100..900&family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&family=Playwrite+DK+Loopet:wght@100..400&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Playwrite DK Loopet;
+            font-size: 1.2rem;
+            font-weight: 700;
+            text-align: center;
+            line-height: 8;
+            text-transform: capitalize;
+        }
+
+        .box {
+            width: 200px;
+            height: 200px;
+            background: tomato;
+            transition: all 1s ease-in;
+            padding: 10px;
+
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 3rem;
+            width: 80%;
+            margin: 4rem auto;
+            perspective: 600px;
+        }
+
+
+
+        .child_1:hover {
+            transform: rotateX(180deg);
+            /* transform: skewX(30deg); */
+        }
+
+        .child_2:hover {
+            transform: rotateY(180deg);
+            /* transform: skewY(50deg); */
+        }
+
+
+        .child_3:hover {
+            transform: rotateZ(90deg);
+            /* transform: skew(20deg); */
+        }
+
+        .child_4:hover {
+            transform: rotate3d(1, 1, 1, 360deg);
+            /* transform: skew(30deg); */
+        }
+
+        .child_5:hover {
+            transform: rotate(20deg);
+            /* transform: skew(20deg); */
+        }
+
+        .child_6:hover {
+            transform: translateZ(100px);
+
+            /* transform: skew(20deg); */
+        }
+
+        .child {
+            background: teal;
+            width: 300px;
+            color: tomato;
+            padding: 20px;
+            position: relative;
+            overflow: hidden;
+            transition: all 2.3s ease;
+        }
+
+        .child span {
+            transition: opacity 0.4s ease;
+        }
+
+        .parent:hover .child {
+            width: 100%;
+            background: tomato;
+        }
+
+        .parent:hover .child span {
+            opacity: 0;
+        }
+
+        .child::after {
+            content: "mehfooz";
+            opacity: 0;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            color: teal;
+            transition: opacity 0.4s ease;
+        }
+
+        .parent:hover .child::after {
+            opacity: 1;
+        }
+
+
+        /* .child {
+            background: teal;
+            width: 300px;
+        }
+
+        .child:hover {
+            background: tomato;
+            width: 100%;
+            transition: all 2.3s ease;
+        } */
+
+        .rotate>img {
+            width: 350px;
+            margin: 4rem auto;
+
+            animation: spin 2s linear infinite forwards;
+            /* animation-name: spin;
+            animation-duration: 2s;
+            animation-timing-function: linear;
+            animation-iteration-count: infinite;
+            animation-fill-mode: forwards; */
+        }
+
+        .rotate>img:hover {
+            animation-play-state: paused;
+        }
+
+        @keyframes spin {
+            from {
+                rotate: 0deg;
+            }
+
+            to {
+                rotate: 360deg
+            }
+        }
+
+
+        .gradient {
+            width: 100%;
+            background: linear-gradient(to bottom left, red, blue, green);
+        }
+
+        .gradient>h1 {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            width: 100%;
+            font-size: 20em;
+            font-weight: bolder;
+            text-align: start;
+            background: linear-gradient(to right, tomato, white, green);
+            background-clip: text;
+            color: transparent;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="box child_1">rotation</div>
+        <div class="box child_2">rotation</div>
+        <div class="box child_3">rotation</div>
+        <div class="box child_4">rotation</div>
+        <div class="box child_5">rotation</div>
+        <div class="box child_6">transition</div>
+    </div>
+
+
+    <div class="parent">
+        <div class="child">
+            <span>hello</span>
+        </div>
+    </div>
+
+
+
+    <div class="rotate">
+        <img src="../utils/react-logo-svgrepo-com.svg" alt="img">
+    </div>
+
+    <div class="gradient">
+        <h1>hello</h1>
+    </div>
+
+</body>
+
+</html>

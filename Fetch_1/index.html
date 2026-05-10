@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>movie</title>
+    <style>
+      img {
+        width: 500px;
+      }
+
+      .heading_3 {
+        background: yellow;
+        display: inline;
+      }
+      #dataAppend {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1rem;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>movie</h1>
+    <input
+      id="search"
+      type="text"
+      onchange="movie_search_func()"
+      placeholder="search movie...."
+    />
+    <div id="dataAppend"></div>
+  </body>
+  <script src="./index.js"></script>
+</html>
