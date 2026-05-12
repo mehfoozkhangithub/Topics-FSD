@@ -10,8 +10,12 @@ const studentSchema = mongoose.Schema(
       type: mongoose.Schema.Types.ObjectId,
       ref: 'Trainer',
     },
+    course: {
+      type: [String],
+      ref: 'Course',
+    },
     batch: String,
-    achivements: String,
+    achivements: [String],
   },
   {
     versionKey: false,

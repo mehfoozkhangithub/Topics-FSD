@@ -109,3 +109,21 @@ Many-Many
 
 Blog application :-
 // read ->UD -> user_id of that user -> is missing the user_id in the notes/blogs
+
+
+
+
+1 : 1
+
+student -> IDCard
+
+
+1 : many
+
+trainer -> student 
+
+
+
+many : many
+
+student -> course
