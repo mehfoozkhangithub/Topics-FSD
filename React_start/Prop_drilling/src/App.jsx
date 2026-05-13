@@ -5,22 +5,22 @@ import { Todo } from './Components/Todo';
 
 export const App = () => {
   const [todo, setTodo] = useState([
-    { id: 1, text: 'hello', isEdits: false, isComplete: false },
+    { id: 1, text: 'hello', isEdits: true, isComplete: false },
   ]);
   const [text, setText] = useState('');
-  const [isEdit, setEdit] = useState(false);
+  const [isEdits, setEdit] = useState(false);
   const [isComplete, setComplete] = useState(false);
 
   const addTodo = () => {
     const todoValue = {
+      id: todo.length + 1,
       text: text,
-      isEdit: isEdit,
+      isEdits: isEdits,
       isComplete: isComplete,
     };
     setTodo([...todo, todoValue]);
     console.log('todo:state_wala:function k ander', todo);
   };
-  console.log('todo:state_wala:function se bahar', todo);
 
   /*   const [counter, setCounter] = React.useState(0);
 

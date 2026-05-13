@@ -14,7 +14,7 @@ export const Counter = ({ props }) => {
     increment,
     decrement,
   );
-  //   console.log(`🚀 ~ props:Counter components`, props);
+  // console.log(`🚀 ~ props:Counter components`, props);
   return (
     <>
       <h1>Counter {counter}</h1>

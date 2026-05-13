@@ -1,8 +1,18 @@
 import React from 'react';
 
 export const TodoList = ({ props }) => {
-  const { todo } = props;
+  const { todo, setTodo } = props;
   console.log(`🚀 ~ todo:inside the list compo`, todo);
+
+  const editValue = (id) => {
+    // get logic
+    const editData = todo.map((el) => {
+      return el.id === id ? { ...el, isEdits: true } : el;
+    });
+    // set
+    console.log(`🚀 ~ editData:`, editData);
+    setTodo(editData);
+  };
   return (
     <>
       {todo.map((el, i) => {
@@ -18,8 +28,17 @@ export const TodoList = ({ props }) => {
           >
             <input type="checkbox" />
             <p>{el.text}</p>
-            <button>edit</button>
-            <button>delete</button>
+            {el.isEdits ? (
+              <>
+                <button>cancel</button>
+                <button>confirm</button>
+              </>
+            ) : (
+              <>
+                <button onClick={() => editValue(el.id)}>edit</button>
+                <button>delete</button>
+              </>
+            )}
           </div>
         );
       })}
