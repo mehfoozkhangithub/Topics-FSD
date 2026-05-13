@@ -14,12 +14,10 @@ studentRoutes.get('/', async (req, res) => {
 
 studentRoutes.get('/:id', async (req, res) => {
   const studentData = await studentModel
-    .find({ _id: req.params.id })
+    .findById({ _id: req.params.id })
     .populate('user_ID')
-    .populate({
-      path: '/student',
-      match: 'student_ID',
-    });
+    .populate('course_ID');
+
   res.send({ msg: 'data found', data: studentData });
 });
 
@@ -29,16 +27,17 @@ studentRoutes.post('/createStudent', async (req, res) => {
   console.log(`🚀 ~ req.body:`, req.body);
   if (req.body) {
     const userData = await userModel.create(req.body);
+    console.log(`🚀 ~ userData:`, userData);
 
+    const courseData = await courseModel.create({
+      ...req.body,
+    });
+    console.log(`🚀 ~ courseData:`, courseData);
     const studentData = await studentModel.create({
       batch: req.body.batch,
       achivements: req.body.achivements,
       user_ID: userData._id,
-    });
-
-    const courseData = await courseModel.create({
-      ...req.body,
-      student_ID: studentData._id,
+      course_ID: courseData._id,
     });
 
     res.send({

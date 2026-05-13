@@ -2,20 +2,18 @@ const mongoose = require('mongoose');
 
 const studentSchema = mongoose.Schema(
   {
-    user_ID: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'User',
-    },
     trainer_ID: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'Trainer',
     },
-    course_ID: {
-      type: String,
-      ref: 'Course',
-    },
+    name: String,
     batch: String,
+    time: Number,
     achivements: [String],
+    role: {
+      type: String,
+      eunm: ['student', 'trainer', 'admin'],
+    },
   },
   {
     versionKey: false,
