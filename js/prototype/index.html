@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>Prototype</h1>
+  </body>
+  <script>
+    let arr1 = [2, 3, 4, 5, 6, 7];
+
+    Array.prototype.धकेलना = function (...value) {
+      for (let key of value) {
+        this[this.length] = key;
+      }
+      return this.length;
+    };
+    let ans = arr1.धकेलना(8, 9, 10);
+    // console.log('🚀 ~ ans:', ans);
+    // console.log('🚀 ~ arr1:', arr1);
+
+    // arr1.pop();
+    // arr1.pop();
+
+    Array.prototype.निकालो = function () {
+      if (this.length > 0) {
+        delete this[this.length - 1];
+        this.length = this.length - 1;
+      }
+    };
+
+    arr1.निकालो();
+    console.log('🚀 ~ arr1:', arr1);
+  </script>
+</html>

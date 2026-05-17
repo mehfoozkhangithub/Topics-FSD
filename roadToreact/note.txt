@@ -1,0 +1,9 @@
+
+mkdir foldername
+
+npm init -y 
+
+- folder 
+        - roadToreact
+            - src
+                - index.jsx [fs]

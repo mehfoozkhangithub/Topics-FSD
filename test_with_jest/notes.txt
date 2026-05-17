@@ -1,0 +1,8 @@
+- array and object 
+- truthy value
+- undefined 
+- null
+
+
+- api 
+- params && query 

@@ -1,0 +1,28 @@
+:root {
+  --width-1: 100px;
+  --width-2: 500px;
+}
+.container_2 {
+  background: teal;
+  width: calc(abs(var(--width-1) - var(--width-2)));
+  height: 300px;
+}
+
+.container_2:hover {
+  background-color: tomato;
+}
+
+h1::after {
+  content: '🚗';
+}
+h1::before {
+  content: '🚅';
+}
+
+img {
+  opacity: 0.1;
+}
+
+img:hover {
+  opacity: 1;
+}

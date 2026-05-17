@@ -1,0 +1,21 @@
+:root {
+  --width-1: 100px;
+  --width-2: 500px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  background: tomato;
+  width: 400px;
+  height: 300px;
+}
+
+.container_2 {
+  background: teal;
+  width: calc(abs(var(--width-1) - var(--width-2)));
+  height: 300px;
+}
