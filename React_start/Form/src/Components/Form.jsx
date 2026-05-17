@@ -3,48 +3,53 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 export const Form = ({ props }) => {
-  const { email, pass, phone, setEmail, setPass, setPhone } = props;
+  const { data, showValue } = props;
+
+  const [form, setForm] = React.useState(
+    data.reduce((acc, curr) => {
+      acc[curr.name] = '';
+      return acc;
+    }, {}),
+  );
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+
+    setForm((prev) => {
+      return {
+        ...prev,
+        [name]: value,
+      };
+    });
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(`🚀 ~  email, pass, phone:`, email, pass, phone);
+
+    showValue(form);
   };
 
   return (
     <form onSubmit={handleSubmit}>
-      <label htmlFor="email">email</label>{' '}
-      <input
-        id="email"
-        type="text"
-        placeholder="enter the value"
-        onChange={(e) => {
-          setEmail(e.target.value);
-        }}
-      />
-      <br />
-      <br />
-      <label htmlFor="pass">pass</label>{' '}
-      <input
-        id="pass"
-        type="text"
-        placeholder="enter the value"
-        onChange={(e) => {
-          setPass(e.target.value);
-        }}
-      />
-      <br />
-      <br />
-      <label htmlFor="phone">phone</label>{' '}
-      <input
-        id="phone"
-        type="text"
-        placeholder="enter the value"
-        onChange={(e) => {
-          setPhone(e.target.value);
-        }}
-      />
-      <br />
-      <br />
+      {data.map((el) => {
+        return (
+          <div key={el._id}>
+            <label htmlFor={el.name}>{el.name}</label> <br />
+            <br />
+            <input
+              id={el.name}
+              name={el.name}
+              type={el.type}
+              placeholder={el.placeholder}
+              onChange={(e) => {
+                handleChange(e);
+              }}
+            />
+            <br />
+            <br />
+          </div>
+        );
+      })}
       <button type="submit">submit</button>
     </form>
   );
