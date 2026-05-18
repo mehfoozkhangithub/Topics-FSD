@@ -1,22 +1,16 @@
-import React from 'react';
+// import { Counter } from './Components/Counter';
+// import { Dummy } from './Components/Dummy';
 
-import { counterCreateContext } from './Context/CounterContext';
+import { Todo } from './Pages/Todo';
 
 export const App = () => {
-  const { count, setCount } = React.useContext(counterCreateContext);
-
-  const increment = () => {
-    setCount(count + 1);
-  };
-  const decrement = () => {
-    setCount(count - 1);
-  };
-
   return (
     <>
-      <h1>Counter {count}</h1>
-      <button onClick={increment}>increment</button>
-      <button onClick={decrement}>decrement</button>
+      <Todo />
+      {/* <Counter /> */}
+      {/* <br />
+      <br /> */}
+      {/* <Dummy name={'mehfooz'} data={[1, 3, 4]} /> */}
     </>
   );
 };
