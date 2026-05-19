@@ -16,6 +16,10 @@ export const Navbar = () => {
       path: '/cart',
       element: 'cartpage',
     },
+    {
+      path: '/login',
+      element: 'login',
+    },
   ];
 
   return (
