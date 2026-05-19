@@ -1,6 +1,7 @@
 import express from 'express';
 import dotenv from 'dotenv';
 dotenv.config();
+import jwt from 'jsonwebtoken';
 
 import { Connection } from './config/db.js';
 import { userModel } from './model/user.model.js';
@@ -36,17 +37,15 @@ server.post('/login', async (req, res) => {
   try {
     if (req.body) {
       const find_User_In_DB = await userModel.find(req.body);
-      // console.log(
-      //   `🚀 ~ find_User_In_DB:`,
-      //   find_User_In_DB,
-      //   find_User_In_DB.length,
-      // );
+
       if (find_User_In_DB.length > 0) {
         if (
           find_User_In_DB[0].email === req.body.email &&
           find_User_In_DB[0].password === req.body.password
         ) {
-          res.send('user successfully logged-in');
+          const token = jwt.sign({ course: 'backend' }, process.env.PrivateKey);
+          console.log(`🚀 ~ token:`, token);
+          res.send({ mag: 'user successfully logged-in', token });
         } else {
           res.send(
             `something went wrong please check the email: ${req.body.email} and pass: ${req.body.password} `,
@@ -57,6 +56,24 @@ server.post('/login', async (req, res) => {
       }
     } else {
       res.send('please enter somthing to save in DB...');
+    }
+  } catch (error) {
+    console.log(`🚀 ~ error:`, error);
+  }
+});
+
+server.get('/purches', (req, res) => {
+  try {
+    const token = req.headers.token.split(' ')[1];
+    console.log(`🚀 ~ token:`, token);
+
+    if (
+      token ===
+      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjb3Vyc2UiOiJiYWNrZW5kIiwiaWF0IjoxNzc5MTY4MDY2fQ.UBrzh6gb-MF70iicbA97e_XKfIoWhzRqpWz6x_ryNgE'
+    ) {
+      console.log(`valid token`);
+    } else {
+      console.log('not present please get token first via login');
     }
   } catch (error) {
     console.log(`🚀 ~ error:`, error);
@@ -74,3 +91,5 @@ server.listen(process.env.Port, async () => {
     console.log(`server is running on Port ${process.env.Port}`);
   }
 });
+
+// hello -> 2 -> jgnnq
