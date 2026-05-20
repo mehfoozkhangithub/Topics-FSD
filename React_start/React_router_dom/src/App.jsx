@@ -5,9 +5,9 @@ import { AllRoutes } from './Routes/AllRoutes';
 export const App = () => {
   return (
     <>
+      {/* hello */}
       <Navbar />
       <AllRoutes />
-
       <Footer />
     </>
   );
