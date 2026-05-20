@@ -66,18 +66,29 @@ server.post('/login', async (req, res) => {
           function (err, data) {
             if (err) {
               console.log(`this is error which i got in compare method ${err}`);
-            }
-            if (data) {
-              const token = jwt.sign(
-                { course: 'backend' },
-                process.env.PrivateKey,
-              );
-              console.log(`🚀 ~ token:`, token);
-              res.send({ mag: 'user successfully logged-in', token });
-            }
-            res.send({ mag: 'password not correct❌❗', response: req.body });
+            } else if (!data)
+              res.send({ mag: 'password not correct❌❗', response: req.body });
+            const token = jwt.sign(
+              { course: 'backend' },
+              process.env.PrivateKey,
+            );
+            console.log(`🚀 ~ token:`, token);
+            res.send({ mag: 'user successfully logged-in', token });
           },
         );
+
+        /*  if (
+          find_User_In_DB[0].email === req.body.email &&
+          find_User_In_DB[0].password === req.body.password
+        ) {
+           const token = jwt.sign({ course: 'backend' }, process.env.PrivateKey);
+          console.log(`🚀 ~ token:`, token);
+          res.send({ mag: 'user successfully logged-in', token });
+        } else {
+          res.send(
+            `something went wrong please check the email: ${req.body.email} and pass: ${req.body.password} `,
+          );
+        } */
       } else {
         res.send('not present please signup first!');
       }
@@ -94,21 +105,14 @@ server.get('/purches', (req, res) => {
     const token = req.headers.token.split(' ')[1];
     console.log(`🚀 ~ token:`, token);
 
-    jwt.verify(token, process.env.PrivateKey, function (err, decoded) {
-      if (err) {
-        console.log(`error in token verification ${err}`);
-      }
-      console.log(decoded);
-    });
-
-    // if (
-    //   token ===
-    //   'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjb3Vyc2UiOiJiYWNrZW5kIiwiaWF0IjoxNzc5MjUzMjYzfQ.zRXq7zBkOdeAUkxwDgt9Rqc2o8uogfA5L9mQewURfeA'
-    // ) {
-    //   console.log(`valid token`);
-    // } else {
-    //   console.log('not present please get token first via login');
-    // }
+    if (
+      token ===
+      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjb3Vyc2UiOiJiYWNrZW5kIiwiaWF0IjoxNzc5MTY4MDY2fQ.UBrzh6gb-MF70iicbA97e_XKfIoWhzRqpWz6x_ryNgE'
+    ) {
+      console.log(`valid token`);
+    } else {
+      console.log('not present please get token first via login');
+    }
   } catch (error) {
     console.log(`🚀 ~ error:`, error);
   }
