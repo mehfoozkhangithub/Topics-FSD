@@ -3,13 +3,14 @@ import dotenv from 'dotenv';
 dotenv.config();
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcrypt';
+import cors from 'cors';
 
 import { Connection } from './config/db.js';
 import { userModel } from './model/user.model.js';
 
 const server = express();
 
-server.use(express.json(), express.text());
+server.use(express.json(), express.text(), cors());
 
 server.get('/', (req, res) => {
   res.send('home');
@@ -19,8 +20,10 @@ server.get('/', (req, res) => {
 
 server.post('/signup', async (req, res) => {
   try {
+    console.log(`🚀 ~ req.body:`, req.body);
     if (req.body) {
       const find_User_In_DB = await userModel.findOne(req.body);
+      console.log(`🚀 ~ find_User_In_DB:`, find_User_In_DB);
       if (find_User_In_DB) {
         res.send('user already exist in DB please login');
       } else {
@@ -36,10 +39,12 @@ server.post('/signup', async (req, res) => {
             // Store hash in your password DB.
             if (err) {
               console.log(`this is error which i got in has method ${err}`);
+              res.send(err);
+            } else {
+              req.body.password = hash;
+              const userCreted = await userModel.create(req.body);
+              res.send(userCreted);
             }
-            req.body.password = hash;
-            const userCreted = await userModel.create(req.body);
-            res.send(userCreted);
           });
         });
       }

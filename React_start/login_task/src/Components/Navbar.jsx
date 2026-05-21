@@ -17,16 +17,13 @@ export const Navbar = () => {
       element: 'home',
     },
     {
-      path: '/about',
-      element: 'about',
-    },
-    {
-      path: '/cart',
-      element: 'cartpage',
-    },
-    {
       path: '/login',
       element: 'login',
+    },
+
+    {
+      path: '/signup',
+      element: 'signup',
     },
   ];
 
