@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>tooltips</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-size: 2rem;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        text-transform: capitalize;
+      }
+
+      button {
+        background: transparent;
+        border: 2px solid green;
+        color: green;
+        padding: 15px 35px;
+        position: absolute;
+        z-index: 5;
+      }
+
+      .container {
+        position: relative;
+        border: 2px solid red;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      span {
+        position: absolute;
+        inset: 0;
+        display: none;
+        background: green;
+        height: fit-content;
+        width: fit-content;
+        top: 180px;
+        left: 180px;
+        padding: 20px;
+        border-radius: 20px;
+      }
+
+      button:hover + span {
+        display: block;
+      }
+
+      button:hover {
+        background: green;
+        color: #fff;
+        transition: all 1s ease-in;
+      }
+
+      span::after {
+        content: '';
+        top: 100%;
+        right: 46%;
+        position: absolute;
+        border: 20px solid;
+        border-color: green transparent transparent transparent;
+        z-index: 9;
+      }
+      
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <button>hover me</button>
+      <span>happy birthday🎁</span>
+    </div>
+  </body>
+</html>

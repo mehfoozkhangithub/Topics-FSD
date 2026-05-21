@@ -1,0 +1,218 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style></style>
+  </head>
+  <body>
+    <h1>form</h1>
+    <header></header>
+
+    <div id="data"></div>
+  </body>
+  <script type="module">
+    import {
+      Navbar,
+      All_style,
+      signup,
+      login,
+      admin,
+    } from '../export/index.js';
+
+    document.addEventListener('DOMContentLoaded', () => {
+      document.querySelector('header').innerHTML = Navbar();
+
+      document.head.querySelector('style').innerHTML = All_style();
+
+      const token = localStorage.getItem('token'); // `Barier ${token}`
+
+      //  logic of history
+
+      let history = localStorage.getItem('history') || '';
+
+      if (history === 'login') {
+        document.querySelector('#data').innerHTML = login();
+      } else if (history === 'admin') {
+        document.querySelector('#data').innerHTML = admin();
+      } else {
+        localStorage.setItem('history', 'signup');
+        document.querySelector('#data').innerHTML = signup();
+      }
+
+      //  ***** routes start ***** //
+
+      // login
+      document
+        .getElementById('loginNav')
+        .addEventListener('click', function () {
+          localStorage.setItem('history', 'login');
+          document.querySelector('#data').innerHTML = login();
+        });
+
+      // signup
+      document
+        .getElementById('signupNav')
+        .addEventListener('click', function () {
+          localStorage.setItem('history', 'signup');
+          document.querySelector('#data').innerHTML = signup();
+        });
+
+      // all user
+      document
+        .getElementById('adminNav')
+        .addEventListener('click', function () {
+          if (token) {
+            localStorage.setItem('history', 'admin');
+            document.querySelector('#data').innerHTML = admin();
+          }
+          alert('please login first??');
+          return;
+        });
+
+      // ***** routes end***** //
+
+      // login code
+
+      if (document.querySelector('#loginForm')) {
+        document.querySelector('#loginForm').addEventListener('submit', (e) => {
+          e.preventDefault();
+
+          // const userData = JSON.parse(localStorage.getItem('user')); //[{},{}]
+
+          let user = {
+            email: document.querySelector('#email').value.trim() || '',
+
+            pass: document.querySelector('#pass').value.trim() || '',
+          };
+          console.log(user);
+
+          // if (!user.email && !user.pass) {
+          //   alert('****please fill each and every input****');
+          // } else {
+          //   userData&&userData.map(el=>{
+
+          //   })
+          // }
+        });
+      }
+
+      //  signup code
+      if (document.querySelector('#signupForm')) {
+        document
+          .querySelector('#signupForm')
+          .addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            let user = {
+              name: document.querySelector('#name').value.trim() || '',
+
+              email: document.querySelector('#email').value.trim() || '',
+
+              phone: document.querySelector('#phone').value.trim() || '',
+
+              pass:
+                (function () {
+                  let p = document.querySelector('#pass').value.trim();
+                  return p ? p.charAt(0).toUpperCase() + p.slice(1) : '';
+                })() || '',
+
+              confirm_pass:
+                document.querySelector('#confirm_pass').value.trim() || '',
+            };
+            // console.log('🚀 ~ user:', user);
+
+            let isValidate = validation(user); // true || false
+            console.log('🚀 ~ isValidate:', isValidate);
+
+            if (isValidate) {
+              localStorage.setItem('user', JSON.stringify(user));
+              alert('you have been successfully signup ✔');
+            }
+          });
+      }
+    });
+
+    const validation = (data) => {
+      console.log('🚀 ~ data:', data);
+      let isValid = true; // flag
+
+      const msg = document.querySelectorAll('.message');
+
+      /* msg[0].innerHTML = 'hello';
+      console.log('🚀 ~ msg:', msg); */
+      if (!data.name) {
+        msg[0].innerHTML = 'name is required!';
+        isValid = false;
+      } else if (data.name.length >= 10) {
+        msg[0].innerHTML = 'please enter the name btwn 1-10 letter!!';
+        isValid = false;
+      } else {
+        msg[0].innerHTML = '';
+      }
+
+      /*
+      mehfoozkhan000@gmail.com // 24
+      mehfoozkhan000@gmail.in
+      mehfoozkhan000@gmail.co
+      mehfoozkhan000@gmail.gov
+
+      */
+      if (!data.email) {
+        msg[1].innerHTML = 'Email is required!';
+        isValid = false;
+      }
+      if (data.email.indexOf('@') === 0) {
+        msg[1].innerHTML = 'invalid email not start fro m "@" !!';
+        isValid = false;
+      } else if (
+        data.email.charAt(data.email.length - 3) !== '.' &&
+        data.email.charAt(data.email.length - 4) !== '.'
+      ) {
+        msg[1].innerHTML =
+          'invalid email bcoz wrong domain, use this .com/.in  !!';
+        isValid = false;
+      } else {
+        msg[1].innerHTML = '';
+      }
+
+      let phoneRegx = /[0-9].{10}/;
+
+      if (!data.phone) {
+        msg[2].innerHTML = 'Phone is required!';
+        isValid = false;
+      } else if (phoneRegx.test(data.phone)) {
+        msg[2].innerHTML = 'please enter the length between 1 to 10 only!!';
+        isValid = false;
+      } else {
+        msg[2].innerHTML = '';
+      }
+
+      let passRegx =
+        /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@&%!$^])[A-Za-z\d@&%!$^]{8,16}$/;
+
+      if (!data.pass) {
+        msg[3].innerHTML = 'Password is required!';
+        isValid = false;
+      } else if (!passRegx.test(data.pass)) {
+        console.log('🚀 ~ passRegx.test(data.pass):', passRegx.test(data.pass));
+        console.log('pass', passRegx);
+        msg[3].innerHTML = 'please enter minimum 8 to 15 characters !!';
+        isValid = false;
+      } else {
+        msg[3].innerHTML = '';
+      }
+
+      if (!data.confirm_pass) {
+        msg[4].innerHTML = 'confirm_pass';
+        isValid = false;
+      } else {
+        msg[4].innerHTML = '';
+      }
+      // gender
+
+      return isValid;
+    };
+  </script>
+</html>
