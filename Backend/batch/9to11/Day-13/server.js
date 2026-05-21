@@ -3,7 +3,6 @@ import dotenv from 'dotenv';
 dotenv.config();
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcrypt';
-import cors from 'cors';
 
 import { Connection } from './config/db.js';
 import { userModel } from './model/user.model.js';
