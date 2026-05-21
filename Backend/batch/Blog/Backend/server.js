@@ -2,19 +2,26 @@ import express from 'express';
 import dotenv from 'dotenv';
 
 dotenv.config();
-import { Connected } from './config/db';
-import { blogRoutes } from './Routes/Blog.routes';
-import { userRoutes } from './Routes/User.routes';
+import { Connection } from './config/db.js';
+import { blogRoutes } from './Routes/Blog.routes.js';
+import { userRoutes } from './Routes/User.routes.js';
 
 const server = express();
+
+server.use(express.json());
 
 server.get('/', (req, res) => {
   res.send('home');
 });
 
+// routes
+server.use('/user', userRoutes);
+server.use('/blog', blogRoutes);
+
+console.log(`🚀 ~ process.env.Port:`, process.env.Port);
 server.listen(process.env.Port, async () => {
   try {
-    await Connected;
+    await Connection();
     console.log('DB Connected successfully✅');
   } catch (error) {
     console.log(`🚀 ~ error:`, error);
