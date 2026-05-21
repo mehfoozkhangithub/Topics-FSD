@@ -1,5 +1,6 @@
 // import React from 'react';
 
+<<<<<<< HEAD
 import { NavLink } from 'react-router-dom';
 
 export const Navbar = () => {
@@ -11,6 +12,11 @@ export const Navbar = () => {
     color: '#000',
   };
 
+=======
+import { Link } from 'react-router-dom';
+
+export const Navbar = () => {
+>>>>>>> 536a6aba62cdfa3124d1e3ef7e5285caf9ad743f
   const data = [
     {
       path: '/',
@@ -37,12 +43,16 @@ export const Navbar = () => {
         display: 'flex',
         justifyContent: 'space-evenly',
         padding: '10px 0',
+<<<<<<< HEAD
         textDecoration: 'none',
         color: 'black',
+=======
+>>>>>>> 536a6aba62cdfa3124d1e3ef7e5285caf9ad743f
       }}
     >
       {data.map((el, i) => {
         return (
+<<<<<<< HEAD
           <NavLink
             to={el.path}
             key={i}
@@ -61,6 +71,15 @@ export const Navbar = () => {
           >
             {el.element}
           </NavLink>
+=======
+          <Link
+            to={el.path}
+            key={i}
+            style={{ textDecoration: 'none', color: 'black' }}
+          >
+            {el.element}
+          </Link>
+>>>>>>> 536a6aba62cdfa3124d1e3ef7e5285caf9ad743f
         );
       })}
     </div>
