@@ -6,6 +6,10 @@ const blogSchema = mongoose.Schema(
     discription: String,
     category: String,
     rating: Number,
+    author: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'User',
+    },
   },
   {
     versionKey: false,

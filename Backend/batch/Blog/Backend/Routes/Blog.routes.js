@@ -6,11 +6,13 @@ import {
   updateManyBlog,
   updateOneBlog,
 } from '../Controller/blogData.js';
+import { blogModel } from '../model/Blog.model.js';
 
 const blogRoutes = express.Router();
 
-blogRoutes.get('/', (req, res) => {
-  res.send("all blog's");
+blogRoutes.get('/', async (req, res) => {
+  const blogs = await blogModel.find().populate('author');
+  res.send(blogs);
 });
 
 // /blog/createBlog

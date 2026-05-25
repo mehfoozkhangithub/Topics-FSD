@@ -4,7 +4,11 @@ import { userModel } from '../model/User.model.js';
 
 const createBlog = async (req, res) => {
   if (req.body) {
-    const blogData = await blogModel.create(req.body);
+    const authorID = await userModel.findOne({ _id: req.userCode.userID });
+    const blogData = await blogModel.create({
+      ...req.body,
+      author: authorID._id,
+    });
     res.send(blogData);
   } else {
     res.send('please enter any thing in body');
@@ -12,7 +16,7 @@ const createBlog = async (req, res) => {
 };
 
 const deleteBlog = async (req, res) => {
-  const userDetail = await userModel.findOne({ _id: res.userCode });
+  const userDetail = await userModel.findOne({ _id: req.userCode.userID });
 
   if (req.params && res.userCode == userDetail._id) {
     const data = await blogModel.deleteOne(req.params);

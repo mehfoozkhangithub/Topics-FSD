@@ -54,7 +54,7 @@ export const login = async (req, res) => {
             }
             if (data) {
               const token = await jwt.sign(
-                { userDetails: userData._id },
+                { userID: userData._id },
                 process.env.PrivateKey,
               );
               res.send({ msg: 'user successfully logged-in', token });
