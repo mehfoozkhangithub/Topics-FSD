@@ -34,7 +34,6 @@ export const signup = async (req, res) => {
       res.send('please enter somthing to save in DB...');
     }
   } catch (error) {
-    console.log(`🚀 ~ error:`, error);
     res.send('something went wrong...');
   }
 };
@@ -43,6 +42,7 @@ export const login = async (req, res) => {
   try {
     if (req.body) {
       const userData = await userModel.findOne({ email: req.body.email });
+      console.log(`🚀 ~ userData:`, userData._id);
 
       if (userData) {
         bcrypt.compare(
@@ -53,8 +53,8 @@ export const login = async (req, res) => {
               res.send(err);
             }
             if (data) {
-              const token = jwt.sign(
-                { course: 'backend' },
+              const token = await jwt.sign(
+                { userDetails: userData._id },
                 process.env.PrivateKey,
               );
               res.send({ msg: 'user successfully logged-in', token });
