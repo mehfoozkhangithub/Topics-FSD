@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>svg</title>
+    <style>
+        .svg {
+            width: 100%;
+            height: 100vh;
+            border: 2px solid red;
+        }
+
+        .mapouter {
+            position: relative;
+            text-align: right;
+            width: 600px;
+            height: 400px;
+        }
+
+        .gmap_canvas {
+            overflow: hidden;
+            background: none !important;
+            width: 600px;
+            height: 400px;
+        }
+
+        .gmap_iframe {
+            width: 600px !important;
+            height: 400px !important;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <svg class="svg">
+        <circle cx="0" cy="0" r="90" fill="red" />
+        <circle cx="100%" cy="0" r="90" fill="tomato" />
+        <circle cx="100%" cy="100%" r="90" fill="teal" />
+        <circle cx="0" cy="100%" r="90" fill="wheat" />
+
+        <rect x="40%" y="40%" width="100" height="100" fill="purple" />
+
+        <text x="100" y="100" font-size="24" fill="red">this is svg</text>
+
+        <line x1="0" y1="0" x2="100%" y2="100%" stroke="green" stroke-width="9" />
+        <line x1="100%" y1="0" x2="0" y2="100%" stroke="green" stroke-width="9" />
+    </svg>
+
+
+    <iframe width="100%" height="800" src="https://www.youtube.com/embed/ZV9sfqiwofg" frameborder="0"
+        allowfullscreen></iframe>
+
+    <!-- https://embed-googlemap.com/ -->
+
+    <div class="mapouter">
+        <div class="gmap_canvas">
+
+            <iframe class="gmap_iframe" frameborder="0"
+                src="https://maps.google.com/maps?width=600&amp;height=400&amp;hl=en&amp;q=gorakhpur&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"></iframe>
+            <a href="https://10minutemail.one">10 minute mail</a>
+        </div>
+
+    </div>
+
+
+    <form>
+        <label for="email">email</label>
+        <input type="email" id="email" placeholder="enter your email">
+        <br>
+        <br>
+
+        <label for="pass">pass</label>
+        <input type="password" id="pass">
+
+
+        <fieldset>
+            <legend>gender</legend>
+            <label for="gender">male</label>
+            <input type="radio" name="male" id="gender">
+            <label for="gender">female</label>
+            <input type="radio" name="female" id="gender">
+            <label for="gender">other</label>
+            <input type="radio" name="other" id="gender">
+        </fieldset>
+    </form>
+
+    <label for="">select country</label>
+
+    <input list="country" />
+
+    <datalist id="country">
+        <option value="">----choose your country----</option>
+        <option value="india">india</option>
+        <option value="china">china</option>
+        <option value="pks">pks</option>
+        <option value="usa">usa</option>
+    </datalist>
+
+
+
+    <button type="submit">click</button>
+    <input type="button" value="click">
+
+
+    <input type="checkbox">
+    <input type="color">
+    <input type="date">
+    <input type="time">
+    <input type="file">
+    <input type="month">
+    <input type="number">
+    <input type="tel">
+    <input type="text">
+    <input type="week">
+    <input type="url">
+    <input type="search">
+    <input type="reset">
+    <input type="range">
+
+    <label for="">choose your country</label>
+    <select name="" id="">
+        <option value="">----choose your country----</option>
+        <option value="">india</option>
+        <option value="">china</option>
+        <option value="">pks</option>
+        <option value="">usa</option>
+    </select>
+
+
+
+
+</body>
+
+</html>

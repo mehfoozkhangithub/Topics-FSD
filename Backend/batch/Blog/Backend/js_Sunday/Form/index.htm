@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>local storage</title>
+    <style>
+      form {
+        display: flex;
+        justify-content: start;
+        flex-direction: column;
+        gap: 0.6em;
+        padding: 1rem;
+      }
+      .message {
+        color: red;
+        font-size: 1rem;
+        font-family:
+          'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande',
+          'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        font-weight: 500;
+        font-style: italic;
+      }
+    </style>
+  </head>
+  <body>
+    <form onsubmit="handleForm(event)">
+      <div style="display: flex; flex-direction: column; gap: 0.5rem">
+        <label for="userEmail">Email</label>
+        <input
+          type="text"
+          name="email"
+          id="userEmail"
+          placeholder="enter your email"
+        />
+        <span class="message"></span>
+      </div>
+
+      <div style="display: flex; flex-direction: column; gap: 0.5rem">
+        <label for="userPassword">Password</label>
+        <input
+          type="text"
+          name="password"
+          id="userPassword"
+          placeholder="enter your pass"
+        />
+        <span class="message"></span>
+      </div>
+      <div>
+        <button type="submit">submit</button>
+      </div>
+    </form>
+    <table border="2" id="table"></table>
+  </body>
+
+  <script src="./index.js"></script>
+</html>

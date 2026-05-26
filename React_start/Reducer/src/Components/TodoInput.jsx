@@ -1,14 +1,12 @@
-import { useReducer, useState } from 'react';
-
-import { Reducer } from '../App/Reducer';
-import { initialState } from '../App/InitialValue';
+import { useContext, useState } from 'react';
 
 import * as types from '../App/Actions';
+import { ReducerContext } from '../Context/ReducerContext';
 
 export const TodoInput = () => {
   const [text, setText] = useState('');
 
-  const [state, dispatch] = useReducer(Reducer, initialState);
+  const { state, dispatch } = useContext(ReducerContext);
 
   const handleAdd = () => {
     const todoData = {

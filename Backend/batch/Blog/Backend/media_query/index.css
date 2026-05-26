@@ -1,0 +1,34 @@
+/* child combinator's */
+
+/* div > h1,
+div > span:nth-child(5) {
+  color: aqua;
+  background: #000;
+} */
+
+/* desendence combinator's */
+
+/* div section span > h1 {
+  color: teal;
+  background: tomato;
+} */
+
+/* next sibling combinator's */
+
+/* div > h1 + h3 {
+  color: purple;
+  background: wheat;
+}
+
+div + h3 {
+  color: teal;
+  background: tomato;
+}
+ */
+
+/* Subsequent-sibling Combinator  */
+
+div + h1 ~ h1 {
+  color: teal;
+  background: tomato;
+}

@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>cookies</h1>
+  </body>
+  <script>
+    const date = new Date();
+    console.log(`🚀 ~ date:before`, date);
+
+    date.setTime(date.getTime() + 60 * 1000);
+
+    console.log(`🚀 ~ date:after`, date);
+
+    const expire = date.toUTCString();
+
+    console.log(`🚀 expire`, expire);
+
+    document.cookie = `username=mehfooz; expires=${date}; path=/`;
+  </script>
+</html>
