@@ -5,6 +5,7 @@ const blogSchema = mongoose.Schema(
     title: String,
     discription: String,
     category: String,
+    content: String,
     rating: Number,
     author: {
       type: mongoose.Schema.Types.ObjectId,

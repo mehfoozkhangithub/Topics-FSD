@@ -14,3 +14,5 @@
 /blog/create-> created user blog  = user authorize
 /blog/delete -> delete user blog  
 /blog/update -> update user blog
+
+/blog/getBlog -> filter || sort || search

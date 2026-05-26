@@ -5,6 +5,7 @@ import {
   deleteBlog,
   updateManyBlog,
   updateOneBlog,
+  getBlog,
 } from '../Controller/blogData.js';
 import { blogModel } from '../model/Blog.model.js';
 
@@ -27,5 +28,8 @@ blogRoutes.patch('/updateOneBlog/:id', updateOneBlog);
 
 // /blog/updateManyBlog
 blogRoutes.put('/updateManyBlog', updateManyBlog);
+
+// /blog/getBlog
+blogRoutes.post('/getBlog', getBlog);
 
 export { blogRoutes };
