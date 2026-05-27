@@ -6,10 +6,11 @@ import { initialState } from '../App/InitialValue';
 import { ReducerContext } from './ReducerContext';
 
 export const AppReducer = ({ children }) => {
+  const [editText, setEditText] = React.useState('');
   const [state, dispatch] = React.useReducer(Reducer, initialState);
 
   return (
-    <ReducerContext.Provider value={{ state, dispatch }}>
+    <ReducerContext.Provider value={{ state, editText, dispatch, setEditText }}>
       {children}
     </ReducerContext.Provider>
   );

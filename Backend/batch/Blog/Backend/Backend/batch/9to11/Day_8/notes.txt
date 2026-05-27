@@ -1,9 +1,0 @@
-- CRUD in MongoDB
-
-    - create | read | update | delete
-    
-    -  inserOne    |    insertMany
-        - create   |      - create
-        - update   |      - update
-        - delete   |      - delete
-

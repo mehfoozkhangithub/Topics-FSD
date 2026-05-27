@@ -17,6 +17,31 @@ export const Reducer = (oldState, action) => {
         todo: oldState.todo.filter((el) => el.id !== action.payload),
       };
 
+    case types.Todo_Update:
+      return {
+        ...oldState,
+        todo: oldState.todo.map((el) =>
+          el.id === action.payload ? { ...el, isEdit: true } : el,
+        ),
+      };
+
+    case types.Todo_Cancel:
+      return {
+        ...oldState,
+        todo: oldState.todo.map((el) =>
+          el.id === action.payload ? { ...el, isEdit: false } : el,
+        ),
+      };
+    case types.Todo_Confirm:
+      return {
+        ...oldState,
+        todo: oldState.todo.map((el) =>
+          el.id === action.payload.id
+            ? { ...el, todo: action.payload.text, isEdit: false }
+            : el,
+        ),
+      };
+
     default:
       return oldState;
   }

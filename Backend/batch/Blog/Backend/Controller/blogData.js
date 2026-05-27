@@ -16,33 +16,21 @@ const getBlog = async (req, res) => {
   db -> product key ->[ title, rating, category]
   */
 
-  const blogs = await blogModel.find().lean();
+  const blogs = await blogModel.find();
 
   const keySetup = blogs.reduce((acc, curr) => {
-    Object.keys(curr).forEach((key) => {
-      if (!acc.includes(key)) {
-        acc.push(key);
-      }
-    });
-    acc.filter((el) => el !== '_id' && el !== 'author');
-    console.log(`🚀 ~ acc:`, acc);
-    return acc;
-  }, []);
+    console.log(`🚀 ~ curr:`, curr);
+    console.log(Object.keys(curr));
 
+    // return acc;
+  }, []);
   console.log(`🚀 ~ keySetup:`, keySetup);
 
-  /*   const keySetup = blogs.reduce((acc, curr) => {
-    let obj = curr.toObject();
-    console.log(Object.keys(obj));
+  // const search =
 
-    return acc;
-  }, []);
+  const blogs = await blogModel.find(search).sort(sort);
 
-  console.log(`🚀 ~ keySetup:`, keySetup);
- */
-  // const blogs = await blogModel.find(search);
-
-  // res.send(search);
+  res.send(blogs);
 };
 
 const createBlog = async (req, res) => {
